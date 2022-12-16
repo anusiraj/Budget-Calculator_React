@@ -1,4 +1,4 @@
-# Getting Started with React Components & React Hooks
+# Getting Started with React Components & React hooks
 
 This assignment requires also TypeScript when passing props to React Components
 
