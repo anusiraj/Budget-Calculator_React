@@ -4,7 +4,8 @@ import './App.css';
 import Income from './Component/IncomeComponent'
 import Expense from './Component/ExpenseComponent'
 import Target from './Component/TargetComponent'
-import Balance from './Component/BalanceComponent'
+// import Balance from './Component/BalanceComponent'
+// import { getRandomValues } from 'crypto';
 
 function App() {
   return (
@@ -13,7 +14,6 @@ function App() {
       <Income />
       <Expense />
       <Target />
-      <Balance />
     </div>
     </>
   );

@@ -9,7 +9,7 @@ const Target = () => {
                 <label htmlFor="file">Current Saving:</label><br/><br/>
                 <label htmlFor="file">Target:</label><br/><br/>
                 <label htmlFor="file">Progress:</label>
-                <progress id="progress" value="0" max="100">0%</progress>     
+                <progress id="progress" value="0" max="100">0</progress>     
             </form>          
         </div>
         </>
