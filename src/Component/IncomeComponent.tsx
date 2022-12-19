@@ -1,49 +1,56 @@
-import React, { Component, MouseEvent } from 'react';
-import { useState } from 'react';
-import Expense from './ExpenseComponent';
-import Balance from './BalanceComponent';
+import { useState } from "react";
 
-const Income = () => {
-    const [income, setIncome] = useState('');
-    const [amount, setAmount] = useState('');    
-    const [date, setDate] = useState('');
-    const [message, setMessage] = useState<string[]>([])
+const Income = ({addIncome}:any) => {
+
+          const [value, setValue] = useState({
+            income: "",
+            amount: "",
+            date: "",
+          });
     
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        let dateObj = new Date(date);
-        setMessage(`${income}: ${amount}EUR on ${dateObj.toDateString()}`);
-        setIncome('');
-        setAmount('');
-        setDate('');
+          const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+            event.preventDefault();
+            setValue({ ...value, [event.target.name]: event.target.value });
+          };
+          const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+            // prevents the submit button from refreshing the page
+            event.preventDefault();
+            addIncome(value);
+            setValue({ income: "", amount: "", date: "" });
+          };
         
-
-    }
-    return(
-        <>
-        <div>
-            <form onSubmit={e => onSubmit(e)}>
-                <label htmlFor = "income_source">Income Source</label><br/>
-                <input id="income" name="income" type="text" value={income} onChange={e => setIncome(e.target.value)} /><br/>
-                <label htmlFor = "amount">Amount of Income</label><br/>
-                <input id="amount" name="amount" type="text" value={amount} onChange={e => setAmount(e.target.value)}/><br/>
-                <label htmlFor="income_date">Date of Income</label><br/>
-                <input type="date" id="date" name="date" value={date}
-                 min="2022-01-01" max="2024-12-31" onChange={e => setDate(e.target.value)}></input><br/>
-                <button type = "submit">Add Income</button>
-                <ul className="list-unstyled">
-                    {message.map((messages:string) => {
-                        return (
-                            <li>{messages}</li>                    
-                            );
-                        })
-                    }
-                </ul>
-            </form>
-        </div>
-        </>
+          return (
+            <div className="form-container">
+              <form onSubmit={e => handleSubmit(e)}>
+                <div>
+                  <label htmlFor = "income_source">Income Source</label><br/>
+                  <input
+                    type="text"
+                    name="income"
+                    value={value.income}
+                    onChange={(event) => handleChange(event)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor = "amount">Amount of Income</label><br/>
+                  <input
+                    type="text"
+                    name="amount"
+                    value={value.amount}
+                    onChange={(event) => handleChange(event)}
+                  />
+                </div>
+                <div>
+                    <label htmlFor="income_date">Date of Income</label><br/>
+                    <input type="date" id="date" name="date" value={value.date}
+                    min="2022-01-01" max="2024-12-31" onChange={(event) => handleChange(event)}></input><br/>
+                </div>
+                <div>
+                  <button>Add Income</button>
+                </div>
+              </form>
+            </div>
     )
 
 }
-
-export default Income;
+export default Income

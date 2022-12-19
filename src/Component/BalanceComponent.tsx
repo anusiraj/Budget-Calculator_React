@@ -7,24 +7,21 @@ type Types1 = {
     balance_amount?: number;
 }
 const Balance: FC<Types1>= (props): ReactElement => {
-    // const {income_amount, expense_source} = props;
-    // const [balance_amount, setAmount] = useState(0);
-    let balance_amount;
-    if(props.income_amount && props.expense_source){
-        // (props.income_amount-props.expense_source)
-        balance_amount = props.income_amount-props.expense_source
+    const [transfer, setTransfer] = useState('');
+    
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(transfer)
+        setTransfer('');
     }
-        
-    //     return ( <div>{balance_amount}</div> )
     return(
         <>
         <div>
-        <form>
+        <form onSubmit={e => onSubmit(e)}>
             <label htmlFor = "balance">Current Balance</label><br/>
-            <label htmlFor = "income-amount">Transfer to Saving Account:</label><br/>
-            <input type="text" id="savings" name="savings"></input><br/>
+            <label htmlFor = "transfer">Transfer to Saving Account:</label><br/>
+            <input type="text" id="transfer" name="transfer" value = {transfer} onChange={e => setTransfer(e.target.value)}></input> 
             <button type = "submit">Transfer</button>
-            <h4>Current Balance:{balance_amount}</h4>
         </form>
         </div>
         </>

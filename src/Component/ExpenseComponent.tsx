@@ -1,45 +1,54 @@
 import { useState } from 'react';
 import Balance from './BalanceComponent';
 
-const Expense = () => {
-    const [values, setValues] = useState({
-        source: "",
-        expense: 0,
-        date: "",
-      });
-      interface FormElements extends HTMLFormControlsCollection {
-        input: HTMLInputElement
-      }
-      interface FormElement extends HTMLFormElement {
-        readonly elements: FormElements
-      }
-      const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({ ...values, [event.target.name]: 
-        event.target.value });
-    };
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log(values)
-        // await callback(); // triggering the callback
-    };
+const Expense = ({addExpense}:any) => {
+  const [value, setValue] = useState({
+    expense: "",
+    amount: "",
+    date: "",
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    setValue({ ...value, [event.target.name]: event.target.value });
+  };
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    // prevents the submit button from refreshing the page
+    event.preventDefault();
+    addExpense(value);
+    setValue({ expense: "", amount: "", date: "" });
+  };
     return(
-        <>
+      <div className="form-container">
+      <form onSubmit={e => handleSubmit(e)}>
         <div>
-        <form onSubmit={onSubmit}>
-            <label htmlFor = "income_source">Expense Source</label><br/>
-            <input id="source" name="source" type="text" value={values.source} onChange={onChange} /><br/>
-            <label htmlFor = "expense">Amount of Expense</label><br/>
-            <input id="expense" name="expense" type="text" value={values.expense} onChange={onChange} /><br/>
-            <label htmlFor="income_date">Date of Expense</label><br/>
-            <input type="date" id="date" name="date" max="2024-12-31" value={values.date} onChange={onChange}></input><br/>
-            <button type = "submit">Add Expense</button>
-        </form>
-        <ul>
-            <li>{values.source}: {values.expense} on {values.date}</li>
-        </ul>
+          <label htmlFor = "expense_source">Expense Source</label><br/>
+          <input
+            type="text"
+            name="expense"
+            value={value.expense}
+            onChange={(event) => handleChange(event)}
+          />
         </div>
-        <Balance expense_source = {values.expense}/>
-        </>
+        <div>
+          <label htmlFor = "amount">Amount of Expense</label><br/>
+          <input
+            type="text"
+            name="amount"
+            value={value.amount}
+            onChange={(event) => handleChange(event)}
+          />
+        </div>
+        <div>
+            <label htmlFor="expense_date">Date of Expense</label><br/>
+            <input type="date" id="date" name="date" value={value.date}
+            min="2022-01-01" max="2024-12-31" onChange={(event) => handleChange(event)}></input><br/>
+        </div>
+        <div>
+          <button>Add Expense</button>
+        </div>
+      </form>
+    </div>
     )
 
 }
