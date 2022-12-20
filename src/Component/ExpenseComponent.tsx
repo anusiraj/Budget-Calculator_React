@@ -1,22 +1,34 @@
 import { useState } from 'react';
+import { ExpenseProps } from '../types/Expense';
 import Balance from './BalanceComponent';
 
-const Expense = ({addExpense}:any) => {
+const Expense = ({addExpense, balance}:any) => {
   const [value, setValue] = useState({
     expense: "",
-    amount: "",
+    amount: 0,
     date: "",
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    setValue({ ...value, [event.target.name]: event.target.value });
-  };
+    if(event.target.id === 'amount'){
+      setValue({...value, [event.target.name]: Number(event.target.value)})
+    }
+    else {
+    setValue({...value, [event.target.name]: event.target.value})
+    }
+  }
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // prevents the submit button from refreshing the page
     event.preventDefault();
-    addExpense(value);
-    setValue({ expense: "", amount: "", date: "" });
+    if(balance<value.amount) {
+      alert("Not enough balance")
+      // return
+    }
+    else{
+      addExpense(value);
+    }
+    
+    setValue({ expense: "", amount: 0, date: "" });
   };
     return(
       <div className="form-container">
@@ -26,6 +38,7 @@ const Expense = ({addExpense}:any) => {
           <input
             type="text"
             name="expense"
+            id = "expense"
             value={value.expense}
             onChange={(event) => handleChange(event)}
           />
@@ -33,8 +46,9 @@ const Expense = ({addExpense}:any) => {
         <div>
           <label htmlFor = "amount">Amount of Expense</label><br/>
           <input
-            type="text"
+            type="number"
             name="amount"
+            id = "amount"
             value={value.amount}
             onChange={(event) => handleChange(event)}
           />

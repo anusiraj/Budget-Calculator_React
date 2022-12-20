@@ -1,4 +1,6 @@
-const Target = () => {
+import { SavingProps } from "../types/Saving";
+
+const Target = ({savings}:SavingProps) => {
     return(
         <>
         <div>
@@ -6,10 +8,10 @@ const Target = () => {
                 <label htmlFor = "target">Set Target</label><br/>
                 <input id="target" name="target" type="text" /><br/>
                 <button type = "submit">Reset</button><br/><br/>
-                <label htmlFor="file">Current Saving:</label><br/><br/>
+                <p>Current Saving: {savings}</p>
                 <label htmlFor="file">Target:</label><br/><br/>
                 <label htmlFor="file">Progress:</label>
-                <progress id="progress" value="0" max="100">0</progress>     
+                <progress id="progress" value="0" max="100">0</progress>  
             </form>          
         </div>
         </>

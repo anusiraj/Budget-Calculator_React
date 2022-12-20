@@ -1,22 +1,30 @@
 import { useState } from "react";
+import { IncomeProps, IncomeType } from "../types/Income";
+import IncomeList from './IncomeListComponent';
+import uuid4 from "uuid4";
 
 const Income = ({addIncome}:any) => {
-
           const [value, setValue] = useState({
             income: "",
-            amount: "",
+            amount: 0,
             date: "",
-          });
-    
-          const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-            event.preventDefault();
-            setValue({ ...value, [event.target.name]: event.target.value });
-          };
+            id: ""
+          })
+         
           const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
             // prevents the submit button from refreshing the page
             event.preventDefault();
-            addIncome(value);
-            setValue({ income: "", amount: "", date: "" });
+            addIncome(value)
+            setValue({ income: "", amount: 0, date: "", id: uuid4() });
+          };
+          const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+            event.preventDefault();
+            if(event.target.id === 'amount'){
+              setValue({...value, [event.target.name]: Number(event.target.value)})
+            }
+            else {
+            setValue({...value, [event.target.name]: event.target.value})
+            }
           };
         
           return (
@@ -27,6 +35,7 @@ const Income = ({addIncome}:any) => {
                   <input
                     type="text"
                     name="income"
+                    id = "income"
                     value={value.income}
                     onChange={(event) => handleChange(event)}
                   />
@@ -34,8 +43,9 @@ const Income = ({addIncome}:any) => {
                 <div>
                   <label htmlFor = "amount">Amount of Income</label><br/>
                   <input
-                    type="text"
+                    type="number"
                     name="amount"
+                    id = "amount"
                     value={value.amount}
                     onChange={(event) => handleChange(event)}
                   />
