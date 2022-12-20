@@ -19,14 +19,11 @@ const Balance = ({balance, setSaving}: BalanceProps) => {
         <div>
         <p>Current Balance: {balance}</p>
         <form onSubmit={e => onSubmit(e)}>
-            <input type="text" id="transfer" name="transfer" value = {transfer} 
-            onChange={e => setTransfer(parseInt(e.target.value))}></input> 
+            <input type="text" id="transfer" name="transfer" value = {transfer} onChange={e => setTransfer(parseInt(e.target.value))}></input> 
             <button type = "submit">Transfer</button>
         </form>
         </div>
         </>
     )
-
 }
-
 export default Balance;

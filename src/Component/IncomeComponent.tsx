@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { IncomeProps, IncomeType } from "../types/Income";
-import IncomeList from './IncomeListComponent';
 import uuid4 from "uuid4";
 
 const Income = ({addIncome}:any) => {
@@ -10,7 +8,6 @@ const Income = ({addIncome}:any) => {
             date: "",
             id: ""
           })
-         
           const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
             // prevents the submit button from refreshing the page
             event.preventDefault();
@@ -25,8 +22,7 @@ const Income = ({addIncome}:any) => {
             else {
             setValue({...value, [event.target.name]: event.target.value})
             }
-          };
-        
+          }
           return (
             <div className="form-container">
               <form onSubmit={e => handleSubmit(e)}>
@@ -61,6 +57,5 @@ const Income = ({addIncome}:any) => {
               </form>
             </div>
     )
-
 }
 export default Income

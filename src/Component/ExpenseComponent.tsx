@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { ExpenseProps } from '../types/Expense';
-import Balance from './BalanceComponent';
 
 const Expense = ({addExpense, balance}:any) => {
   const [value, setValue] = useState({
@@ -22,12 +20,10 @@ const Expense = ({addExpense, balance}:any) => {
     event.preventDefault();
     if(balance<value.amount) {
       alert("Not enough balance")
-      // return
     }
     else{
       addExpense(value);
     }
-    
     setValue({ expense: "", amount: 0, date: "" });
   };
     return(
@@ -64,7 +60,5 @@ const Expense = ({addExpense, balance}:any) => {
       </form>
     </div>
     )
-
 }
-
 export default Expense;

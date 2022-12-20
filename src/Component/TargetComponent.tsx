@@ -1,22 +1,27 @@
+import { useState } from "react";
 import { SavingProps } from "../types/Saving";
 
 const Target = ({savings}:SavingProps) => {
+    const[target, setTarget] = useState(0)
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setTarget(0)
+    }
     return(
         <>
         <div>
-        <form>
-                <label htmlFor = "target">Set Target</label><br/>
-                <input id="target" name="target" type="text" /><br/>
-                <button type = "submit">Reset</button><br/><br/>
-                <p>Current Saving: {savings}</p>
-                <label htmlFor="file">Target:</label><br/><br/>
-                <label htmlFor="file">Progress:</label>
-                <progress id="progress" value="0" max="100">0</progress>  
-            </form>          
+        <form onSubmit={e => onSubmit(e)}>
+            <label htmlFor = "target">Set Target</label><br/>
+            <input id="target" name="target" value = {target} type="text" onChange={(e) =>setTarget(parseInt(e.target.value))} /><br/>
+            <button type = "submit">Reset</button><br/><br/>
+        </form>
+            <p>Current Saving: {savings}</p>
+            <p>Target: {target}</p>
+            <p>Progress: {savings/target*100 || 0}%</p><progress id="progress" value={savings} max={target}>0</progress>  
+                      
         </div>
         </>
     )
-
 }
-
 export default Target;
