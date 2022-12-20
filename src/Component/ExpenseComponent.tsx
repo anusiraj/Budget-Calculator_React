@@ -55,7 +55,7 @@ const Expense = ({addExpense, balance}:any) => {
             min="2022-01-01" max="2024-12-31" onChange={(event) => handleChange(event)}></input><br/>
         </div>
         <div>
-          <button>Add Expense</button>
+          <button className='button'>Add Expense</button>
         </div>
       </form>
     </div>

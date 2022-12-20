@@ -52,7 +52,7 @@ const Income = ({addIncome}:any) => {
                     min="2022-01-01" max="2024-12-31" onChange={(event) => handleChange(event)}></input><br/>
                 </div>
                 <div>
-                  <button>Add Income</button>
+                  <button className='button'>Add Income</button>
                 </div>
               </form>
             </div>

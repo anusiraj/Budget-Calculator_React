@@ -14,11 +14,13 @@ const Target = ({savings}:SavingProps) => {
         <form onSubmit={e => onSubmit(e)}>
             <label htmlFor = "target">Set Target</label><br/>
             <input id="target" name="target" value = {target} type="text" onChange={(e) =>setTarget(parseInt(e.target.value))} /><br/>
-            <button type = "submit">Reset</button><br/><br/>
+            <button className='button' type = "submit">Reset</button><br/><br/>
         </form>
             <p>Current Saving: {savings}</p>
             <p>Target: {target}</p>
-            <p>Progress: {savings/target*100 || 0}%</p><progress id="progress" value={savings} max={target}>0</progress>  
+            <p>Progress: {savings/target*100 || 0}%
+                <progress id="progress" value={savings} max={target}>0</progress>
+            </p>  
                       
         </div>
         </>

@@ -1,12 +1,35 @@
-.main {
+.header{
+  text-align: center;
+  color: rgb(255, 217, 0);;
+}
+.entry-section, .expense-section, .target-section{
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  flex: 0 0 33.333333%;
+  flex: 0 0 0;
   text-align: left;
   justify-content: center;
-  margin: 3em;
-  padding: 2em;
+  margin: 1em;
+  padding: 1em;
   gap: 6em;
+  width:95vw;
+  height: 40vh;
+  border-radius: 10px;
+  color: rgb(67, 89, 232);
 }
-
+.entry-section {
+  background-color: rgb(222, 222, 16);
+}
+.target-section {
+  background-color: rgb(231, 231, 161);
+}
+.button, .button-transfer {
+  margin-top: 1em;
+  padding: 5px;
+  background: rgb(85, 98, 184);
+  border-radius: 10px;
+  width: 100px
+}
+.button-transfer {
+  margin-left: 1em;
+}

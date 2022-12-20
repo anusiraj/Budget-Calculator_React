@@ -29,11 +29,14 @@ function App() {
   })
   return (
     <>
-    <div className = "main">
+    <h2 className='header'>React budget calculator</h2>
+    <div className = "entry-section">
       <Income addIncome = {addIncome} balance = {balance} />
       <IncomeList incomeList={incomes} addIncome={0} updateIncome={0} value={[]} incomes={[]} balance={0}/>
       <Expense addExpense = {addExpense} balance = {balance} />
       <ExpenseList expenseList={expense} addExpense={0} updateExpense={0} value={[]} expenses={[]} balance={0}/>
+    </div>
+    <div className = "target-section">
       <Target savings = {savings} />
       <Balance balance={balance} setSaving = {setSaving}/>
     </div>
