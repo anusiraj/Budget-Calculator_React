@@ -4,6 +4,9 @@
 
 Exercise for learning React & Typescript together
 
+# Deploy Link
+https://soft-swan-4eca42.netlify.app/
+
 ## Requirements
 
 1. React(React hooks, Functional component(optional))
